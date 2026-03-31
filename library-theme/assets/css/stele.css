@@ -1,0 +1,423 @@
+/* --- 1. Общие сбросы и База --- */
+/* В самое начало CSS */
+:root {
+    --bg-image: url('../images/background.png');
+    --main-bg: #fdf5e6;
+    --sidebar-bg: #c06c4d;
+    --text-color: #333;
+    --header-text: #4a1d1d;
+    --font-size: 16px;
+}
+
+/* Обновите существующие селекторы, чтобы они использовали переменные */
+body {
+    background: var(--bg-image) no-repeat center center fixed;
+    background-size: cover;
+    font-size: var(--font-size);
+    color: var(--text-color);
+}
+
+.content-box {
+    background-color: var(--main-bg);
+}
+
+.menu-container, .search-block, .social-block {
+    background-color: var(--sidebar-bg);
+}
+
+/* --- СЕКЦИЯ ДЛЯ СЛАБОВИДЯЩИХ (ГОСТ) --- */
+body.special-view {
+    --bg-image: none !important;
+    background-color: #fff !important;
+    --main-bg: #fff;
+    --sidebar-bg: #000;
+    --text-color: #000;
+    --header-text: #000;
+    font-family: "Arial", sans-serif !important;
+    line-height: 1.5 !important;
+    letter-spacing: 0.1em !important;
+}
+
+body.special-view.black-white {
+    background-color: #fff !important;
+    --text-color: #000;
+}
+
+body.special-view.white-black {
+    background-color: #000 !important;
+    --main-bg: #000;
+    --text-color: #fff;
+    --header-text: #fff;
+    --sidebar-bg: #333;
+}
+
+/* Увеличение шрифта */
+body.font-lg { --font-size: 24px; }
+body.font-xl { --font-size: 32px; }
+
+/* Скрытие картинок в спецрежиме */
+body.special-view.no-images img {
+    display: none !important;
+}
+
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background: url('../images/background.png') no-repeat center center fixed;
+    background-size: cover;
+    min-height: 100vh;
+    margin: 0;
+    font-family: Arial, sans-serif;
+    display: flex;           /* Для прижатия футера */
+    flex-direction: column;  /* Для прижатия футера */
+}
+
+a {
+    text-decoration: none;
+    transition: 0.2s;
+}
+
+ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+/* --- 2. Шапка --- */
+.header {
+    position: relative;
+    height: 80px;
+    flex-shrink: 0;
+}
+
+.header h1 img {
+    position: absolute;
+    top: 20px;
+    left: 40px;
+    max-width: 150px;
+}
+
+/* --- 3. Основная сетка --- */
+.main-wrapper {
+    display: flex;
+    align-items: flex-start;
+    gap: 30px;
+    padding: 20px 40px;
+    flex: 1; /* Растягивается, выталкивая футер вниз */
+}
+
+/* ЛЕВАЯ КОЛОНКА */
+.left-sidebar {
+    display: flex;
+    flex-direction: column;
+    gap: 20px; /* Расстояние между Меню, Поиском и Соцсетями */
+    width: 280px;
+    flex-shrink: 0;
+}
+
+/* СТИЛЬ БЛОКОВ (Общий для всех трех блоков слева) */
+.menu-container, 
+.search-block, 
+.social-block {
+    background-color: #c06c4d;
+    border-radius: 20px;
+    padding: 15px 20px;
+    box-sizing: border-box;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
+/* Ссылки в меню и соцсетях */
+.menu-container a, 
+.social-link {
+    color: white;
+    font-size: 14px;
+    display: block;
+    padding: 12px 0;
+    line-height: 1.4;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+    word-wrap: break-word;
+}
+
+.menu-container a:hover, 
+.social-link:hover {
+    text-decoration: underline;
+}
+
+/* Убираем нижнюю линию у последних элементов */
+.menu-container ul li:last-child a,
+.social-link:last-child {
+    border-bottom: none;
+}
+
+/* --- 4. Блок Поиска --- */
+.search-block form {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+}
+
+.search-block input {
+    flex-grow: 1;
+    background: rgba(255, 255, 255, 0.2);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 10px;
+    padding: 8px 12px;
+    color: white;
+    font-size: 14px;
+    outline: none;
+}
+
+.search-block input::placeholder {
+    color: rgba(255, 255, 255, 0.7);
+}
+
+.search-block button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    display: flex;
+}
+
+/* --- 5. Блок Соцсетей --- */
+.social-title {
+    color: white;
+    font-size: 14px;
+    font-weight: bold;
+    margin: 0 0 5px 0;
+    text-align: center;
+}
+
+.social-link {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.social-link svg {
+    flex-shrink: 0;
+}
+
+/* --- 6. Центральный контент --- */
+.content-box {
+    background-color: #fdf5e6;
+    border: 2px solid #d17a5a;
+    border-radius: 15px;
+    flex-grow: 1;
+    min-height: 500px;
+    padding: 30px;
+    box-shadow: inset 0 0 10px rgba(0,0,0,0.1);
+}
+
+.content-header {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    margin-bottom: 20px;
+}
+
+.content-title {
+    font-style: italic;
+    color: #4a1d1d;
+    margin: 0;
+}
+
+.header-line {
+    width: 100%;
+    height: 3px;
+    background-color: #d17a5a;
+}
+
+.content-body {
+    color: #333;
+    line-height: 1.6;
+    text-align: justify;
+}
+
+/* --- 7. Правая колонка афиш --- */
+.aside-posters {
+    width: 350px;
+    flex-shrink: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.poster-card img {
+    width: 100%;
+    border: 3px solid #d17a5a;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+    display: block;
+    transition: transform 0.3s ease;
+}
+
+.poster-card img:hover {
+    transform: scale(1.03);
+}
+
+/* --- 8. Футер (Правовая информация) --- */
+.site-footer {
+    background-color: #2a1a14;
+    color: #bbb;
+    padding: 15px 40px;
+    font-size: 11px;
+    line-height: 1.4;
+    flex-shrink: 0; /* Не дает футеру сжиматься */
+}
+
+.footer-inner {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+    padding-bottom: 10px;
+    margin-bottom: 10px;
+}
+
+.footer-col a {
+    color: #bbb;
+}
+
+.footer-col a:hover {
+    color: #d17a5a;
+}
+
+.f-label {
+    color: #d17a5a;
+    font-weight: bold;
+}
+
+.footer-bottom {
+    text-align: center;
+    color: #666;
+    font-size: 9px;   /* Было 10px, можно поставить 8px для миниатюрности */
+    margin-top: 5px;  /* Небольшой отступ от линии сверху */
+}
+
+/* --- 9. Кнопка Полноэкранного режима --- */
+.fullscreen-toggle {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    width: 50px;
+    height: 50px;
+    background-color: #c06c4d;
+    border: 2px solid rgba(255, 255, 255, 0.4);
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+    z-index: 9999;
+}
+
+.fullscreen-toggle:hover {
+    background-color: #d17a5a;
+    transform: scale(1.1);
+}
+
+/* --- 10. Адаптивность --- */
+@media (max-width: 1200px) {
+    .left-sidebar { width: 220px; }
+    .aside-posters { width: 180px; }
+}
+
+@media (max-width: 1024px) {
+    .main-wrapper {
+        flex-direction: column;
+        padding: 15px;
+    }
+
+    .left-sidebar, 
+    .content-box, 
+    .aside-posters {
+        width: 100%;
+    }
+
+    .aside-posters {
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    .poster-card {
+        width: 45%;
+    }
+}
+
+@media (max-width: 480px) {
+    .poster-card {
+        width: 100%;
+    }
+}
+
+/* Контейнер списка результатов */
+.search-results-list {
+    display: none;
+    margin-top: 10px;
+    background: rgba(0, 0, 0, 0.2);
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+/* Элемент списка (ссылка) */
+.search-result-item {
+    display: block;
+    padding: 10px;
+    color: white;
+    font-size: 13px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+.search-result-item:last-child {
+    border-bottom: none;
+}
+
+.search-result-item:hover {
+    background: rgba(255, 255, 255, 0.1);
+    text-decoration: none !important;
+}
+
+/* Та самая желтая подсветка */
+.highlight {
+    background-color: #ffeb3b;
+    color: #000;
+    border-radius: 2px;
+    padding: 0 2px;
+    font-weight: bold;
+}
+mark {
+    background-color: yellow;
+    color: black;
+    padding: 0;
+}
+
+/* --- Исправления для совместимости с плагином BVI --- */
+
+/* Убираем фоновую картинку вашего сайта, когда включен спецрежим, 
+   чтобы она не просвечивала сквозь настройки плагина */
+body.bvi-active {
+    background-image: none !important;
+}
+
+/* Уменьшаем логотип в шапке, чтобы панель управления плагина 
+   (которая появится сверху) не перекрывала его и не "съезжала" */
+body.bvi-active .header img {
+    max-width: 150px !important;
+    height: auto !important;
+}
+
+/* Если у вас есть фиксированные элементы, которые мешают панели, 
+   их тоже стоит подправить здесь */
+body.bvi-active .bvi-panel {
+    /* Гарантируем, что панель плагина всегда сверху */
+    z-index: 10000;
+}
